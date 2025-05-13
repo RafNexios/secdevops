@@ -13,5 +13,5 @@ jobs:
       - name: Secret Scanning
         uses: trufflesecurity/trufflehog@main
         with:
-          base: master
+          head: master
           extra_args: --results=verified,unknown
