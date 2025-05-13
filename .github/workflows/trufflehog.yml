@@ -1,0 +1,12 @@
+name: TruffleHog
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout git repository"
+        uses: actions/checkout@v3
+      - name: TruffleHog OSS
+        uses: trufflesecurity/trufflehog@v3.88.29
