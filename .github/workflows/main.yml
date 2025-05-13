@@ -14,4 +14,4 @@ jobs:
           format: cyclonedx-json
           output-file: sbom.json
       - name: curl
-        run: "curl -X POST -H 'X-Api-Key: odt_j5TEn8Qe_oPIpMDxzR8kXFsI6s8GJt8vQtixB4NIY' -F 'project=b5207d91-b1bb-48f7-9756-82222834dbde' -F 'bom=@sbom.json' https://dependency.portasecure.com/api/v1/bom"
+        run: "curl -X POST -H 'X-Api-Key: odt_j5TEn8Qe_oPIpMDxzR8kXFsI6s8GJt8vQtixB4NIY' -F 'project=b5207d91-b1bb-48f7-9756-82222834dbde' -F 'bom=@sbom.json' https://dependency.portasecura.com/api/v1/bom"
