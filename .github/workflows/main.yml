@@ -6,12 +6,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Anchore SBOM Action
-        uses: anchore/sbom-action@v0.16.0
+      - name: "Checkout git repository"
+        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
+      - name: "Use Node.js 18"
+        uses: actions/setup-node@v4
         with:
-          format: cyclonedx-json
-          output-file: sbom.json
+          node-version: 18
+      - run: npm install
+      - name: Create SBOM step
+        # see for usage: https://www.npmjs.com/package/%40cyclonedx/cyclonedx-npm
+        run: npx @cyclonedx/cyclonedx-npm --output-format JSON --output-file sbom.json --verbose package.json
       - name: curl
         run: "curl -X POST -H 'X-Api-Key: odt_j5TEn8Qe_oPIpMDxzR8kXFsI6s8GJt8vQtixB4NIY' -F 'project=b5207d91-b1bb-48f7-9756-82222834dbde' -F 'bom=@sbom.json' https://dependency.portasecura.com/api/v1/bom"
