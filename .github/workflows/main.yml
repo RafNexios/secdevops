@@ -2,9 +2,9 @@ name: Generate SBOM
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   sbom:
@@ -18,11 +18,11 @@ jobs:
         uses: anchore/sbom-action@v0.15.3
         with:
           path: .
-          output-file: sbom.cyclonedx.json
-          format: cyclonedx-json
+          output-file: sbom.spdx.json
+          format: spdx-json
 
       - name: Upload SBOM as artifact
         uses: actions/upload-artifact@v4
         with:
           name: sbom
-          path: sbom.cyclonedx.json
+          path: sbom.spdx.json
