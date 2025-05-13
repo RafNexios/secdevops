@@ -1,13 +1,24 @@
-name: Code QL
-
-on: [push]
+name: "CodeQL"
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
 
 jobs:
-  build:
+  analyze:
+    name: Analyze CodeQL
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout git repository"
-        uses: actions/checkout@3df4ab11eba7bda6032a0b82a6bb43b11571feac
-# Initializes the CodeQL tools for scanning.
-      - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up CodeQL
+        uses: github/codeql-action/setup-codeql@v2
+
+      - name: Initialize CodeQL database
+        uses: github/codeql-action/analyze@v2
+        with:
+          category: 'Security'
