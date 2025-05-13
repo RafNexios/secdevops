@@ -8,5 +8,7 @@ jobs:
     steps:
       - name: "Checkout git repository"
         uses: actions/checkout@v3
-      - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@v3.88.29
+      - name: Secret Scanning
+        uses: trufflesecurity/trufflehog@main
+        with:
+          extra_args: --results=verified,unknown
