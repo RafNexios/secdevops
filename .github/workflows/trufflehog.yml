@@ -16,4 +16,4 @@ jobs:
         with:
           base: ""
           head: master
-          extra_args: --results=verified,unknown
+          extra_args: --results=verified,unknown --include-detectors="all"
